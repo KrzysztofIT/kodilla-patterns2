@@ -1,7 +1,5 @@
 package com.kodilla.patterns2.adapter.company.newhrsystem;
 
-import javax.jnlp.PersistenceService;
-import java.awt.event.PaintEvent;
 import java.math.BigDecimal;
 import java.util.Objects;
 
