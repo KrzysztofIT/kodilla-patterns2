@@ -1,5 +1,4 @@
-package com.kodilla.patterns2.aop.calculator;
-
+package com.kodilla.patterns2.facade.api;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -13,10 +12,21 @@ import java.math.BigDecimal;
 
 @Aspect
 @Component
-public class Watcher {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Watcher.class);
+public class orderFacadeWatcher {
 
-    @Before("execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))" + "&& args(theNumber) && target(object)")
+    private static final Logger LOGGER = LoggerFactory.getLogger(orderFacadeWatcher.class);
+
+
+
+  /*@Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade(..))")
+    public void logEvent(){
+        System.out.println("cokolwiek");
+        LOGGER.info("Logging the event");
+        //LOGGER.info("Class: " + object.getClass().getName() + ", Args: " + theNumber);
+
+    }*/
+
+    @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))" + "&& args(theNumber) && target(object)")
     public void logEvent(BigDecimal theNumber, Object object){
         System.out.println("cokolwiek");
         LOGGER.info("Logging the event");
@@ -24,7 +34,7 @@ public class Watcher {
 
     }
 
-    @Around("execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))")
+    @Around("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))")
     public Object measureTime(final ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Object result;
         try {
@@ -40,3 +50,7 @@ public class Watcher {
     }
 
 }
+
+
+
+
